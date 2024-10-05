@@ -11,6 +11,8 @@ use App\Http\Controllers\VerificationController;
 
 Route::prefix('api')->group(function () {
     Route::get('/hotels', [HotelController::class, 'index']); // List all hotels
+    // TODO: here would be better if we had this endpoint call a method in the HotelController to a rooms() method
+    // that would show all the rooms that hotel has
     Route::get('/hotels/{hotel}/rooms', [RoomController::class, 'index']); // List rooms for a hotel
     Route::post('/bookings', [BookingController::class, 'store']); // Book a room
     Route::get('/bookings', [BookingController::class, 'index']); // User's bookings
