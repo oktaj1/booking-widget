@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\HotelController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\Hotel\RoomController;
+use App\Http\Controllers\Hotel\HotelController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Hotel\BookingController;
+use App\Http\Controllers\Auth\VerificationController;
+
 
 
 
@@ -33,4 +34,4 @@ Route::get('/verify/{token}/{email}', [VerificationController::class, 'verify'])
 
 
 
-Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);

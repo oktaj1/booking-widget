@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\CustomVerifyEmail;
 use Illuminate\Validation\ValidationException;
 
-class RegisterController extends Controller
+
+
+
+class RegisterController extends Controller 
 {
     public function register(Request $request)
     {
