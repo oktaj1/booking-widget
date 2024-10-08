@@ -1,14 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Hotel\RoomController;
-use App\Http\Controllers\Hotel\HotelController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Hotel\BookingController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
-
-
-
+use App\Http\Controllers\Hotel\BookingController;
+use App\Http\Controllers\Hotel\HotelController;
+use App\Http\Controllers\Hotel\RoomController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->group(function () {
     Route::get('/hotels', [HotelController::class, 'index']); // List all hotels
@@ -19,7 +16,6 @@ Route::prefix('api')->group(function () {
     Route::get('/bookings', [BookingController::class, 'index']); // User's bookings
 });
 
-
 Route::middleware(['role:hotel_owner'])->group(function () {
     Route::post('/manage-hotel', [HotelController::class, 'manage']);
 });
@@ -28,10 +24,7 @@ Route::middleware(['role:hotel_employee'])->group(function () {
     Route::get('/view-bookings', [BookingController::class, 'index']);
 });
 
-
-
 Route::get('/verify/{token}/{email}', [VerificationController::class, 'verify'])->name('verification.verify');
 
-
-
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+Route::post('login', LoginController::class);
