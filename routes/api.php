@@ -7,6 +7,7 @@ use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\RoomController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix('api')->group(function () {
     Route::get('/hotels', [HotelController::class, 'index']); // List all hotels
     // TODO: here would be better if we had this endpoint call a method in the HotelController to a rooms() method
@@ -28,3 +29,6 @@ Route::get('/verify/{token}/{email}', [VerificationController::class, 'verify'])
 
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 Route::post('login', LoginController::class);
+
+
+

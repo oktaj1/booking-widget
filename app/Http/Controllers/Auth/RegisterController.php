@@ -17,20 +17,21 @@ class RegisterController extends Controller
         try {
             $validatedData = $request->validate([
                 'email' => 'required|email|unique:users,email',
-                'name' => 'required|unique:users,name',
+                'name' => 'required:users,name',
                 'password' => 'required|min:6',
-                'phone' => 'required|string|unique:users,phone',
+                // 'phone' => 'required|string|unique:users,phone',
             ]);
 
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
+                // 'phone' => $validatedData['phone'],
                 'password' => bcrypt($request->input('password')),
                 'verification_token' => Str::random(40),
             ]);
 
             Mail::to($user->email)->queue(new VerificationMail($user));
+
 
             $response['data']['message'] = 'User registered, please verify your email.';
             $response['data']['success'] = true;

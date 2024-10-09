@@ -18,9 +18,9 @@ class VerificationMail extends Mailable implements ShouldQueue
     public function __construct($user)
     {
         $this->user = $user;
-        $this->verificationUrl = config('app.url').'/verify/'.$user->verification_token.'/'.urlencode($user->email);
+        // $this->verificationUrl = config('app.url').'/verify/'.$user->verification_token.'/'.urlencode($user->email);
 
-        // $this->verificationUrl = url("/api/verify/{$user->verification_token}/{$user->email}");
+        $this->verificationUrl = url("/api/verify/{$user->verification_token}/{$user->email}");
     }
 
     public function build()
